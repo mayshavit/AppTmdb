@@ -34,10 +34,10 @@ public class WelcomeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        _viewModel = (WelcomeFragmentViewModel) ((MainActivity)getActivity()).getViewModel(WelcomeFragmentViewModel.class);
-        _latestMoviesBtn.setOnClickListener(v-> _viewModel.onLatestMovies());
-        _favoritesBtn.setOnClickListener(v-> _viewModel.onFavorites());
-        _loginBtn.setOnClickListener(v-> _viewModel.onLogin());
+        _viewModel = (WelcomeFragmentViewModel) ((MainActivity) getActivity()).getViewModel(WelcomeFragmentViewModel.class);
+        _latestMoviesBtn.setOnClickListener(v -> _viewModel.onLatestMovies());
+        _favoritesBtn.setOnClickListener(v -> _viewModel.onFavorites());
+        _loginBtn.setOnClickListener(v -> _viewModel.onLogin());
 
         _viewModel.getLoginLiveData().observe(getViewLifecycleOwner(), result -> {
             if (result.isSuccessful()) {

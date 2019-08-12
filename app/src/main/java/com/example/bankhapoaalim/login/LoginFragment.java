@@ -39,7 +39,7 @@ public class LoginFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        _viewModel = (LoginViewModel)((MainActivity)getActivity()).getViewModel(LoginViewModel.class);
+        _viewModel = (LoginViewModel) ((MainActivity) getActivity()).getViewModel(LoginViewModel.class);
         _viewModel.getLoginResult().observe(getViewLifecycleOwner(), result -> {
             if (result.isSuccessful()) {
                 getActivity().onBackPressed();

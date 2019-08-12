@@ -11,9 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bankhapoaalim.MainActivity;
-import com.example.bankhapoaalim.MoviesAdapter;
+import com.example.bankhapoaalim.widget.MoviesAdapter;
 import com.example.bankhapoaalim.R;
-import com.example.bankhapoaalim.welcome.WelcomeFragmentViewModel;
 
 import info.movito.themoviedbapi.model.MovieDb;
 
@@ -43,7 +42,7 @@ public class LatestMoviesFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        _viewModel = (LatestMoviesViewModel) ((MainActivity)getActivity()).getViewModel(LatestMoviesViewModel.class);
+        _viewModel = (LatestMoviesViewModel) ((MainActivity) getActivity()).getViewModel(LatestMoviesViewModel.class);
         _viewModel.getLatestMovies().observe(getViewLifecycleOwner(), result -> {
             _moviesAdapter.setMovies(result);
         });

@@ -1,9 +1,8 @@
-package com.example.bankhapoaalim;
-
-import android.app.Service;
+package com.example.bankhapoaalim.widget;
 
 import androidx.lifecycle.ViewModel;
 
+import com.example.bankhapoaalim.AppNetwork;
 import com.example.bankhapoaalim.favorites.FavoritesViewModel;
 import com.example.bankhapoaalim.latestmovies.LatestMoviesViewModel;
 import com.example.bankhapoaalim.login.LoginViewModel;
@@ -12,9 +11,9 @@ import com.example.bankhapoaalim.welcome.WelcomeFragmentViewModel;
 public class ViewModelsFactory {
 
     private Navigator _navigator;
-    private AppService _service;
+    private AppNetwork _service;
 
-    public ViewModelsFactory(Navigator navigator, AppService service) {
+    public ViewModelsFactory(Navigator navigator, AppNetwork service) {
         _navigator = navigator;
         _service = service;
 

@@ -8,11 +8,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModel;
 
-import com.example.bankhapoaalim.AppNavigator;
-import com.example.bankhapoaalim.AppService;
-import com.example.bankhapoaalim.Navigator;
+import com.example.bankhapoaalim.AppNetwork;
+import com.example.bankhapoaalim.widget.AppNavigator;
+import com.example.bankhapoaalim.widget.Navigator;
 import com.example.bankhapoaalim.R;
-import com.example.bankhapoaalim.ViewModelsFactory;
+import com.example.bankhapoaalim.widget.ViewModelsFactory;
 
 public class FavoritesActivity extends AppCompatActivity {
 
@@ -28,7 +28,7 @@ public class FavoritesActivity extends AppCompatActivity {
         _loadingTextView = findViewById(R.id.loading_view);
         _errorTextView = findViewById(R.id.error_view);
 
-        AppService service = AppService.getInstance();
+        AppNetwork service = AppNetwork.getInstance();
         Navigator navigator = new AppNavigator(this);
         service.getConnectLiveData().observe(this, result -> {
             _loadingTextView.setVisibility(View.GONE);

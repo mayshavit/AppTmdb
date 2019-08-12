@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: info.movito:themoviedbapi:1.9@jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/info.movito/themoviedbapi/1.9/d577ee88d27ce3a33053de10395fa63b528de75/themoviedbapi-1.9.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/info.movito/themoviedbapi/1.9/789c9ce9578a4b3946dfd9f4147b3727774814db/themoviedbapi-1.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,6 +1,5 @@
-package com.example.bankhapoaalim;
+package com.example.bankhapoaalim.widget;
 
-import android.app.Activity;
 import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.bankhapoaalim.MainActivity;
+import com.example.bankhapoaalim.R;
 import com.example.bankhapoaalim.favorites.FavoritesActivity;
 import com.example.bankhapoaalim.favorites.FavoritesFragment;
 import com.example.bankhapoaalim.latestmovies.LatestMoviesFragment;
@@ -20,6 +21,7 @@ import info.movito.themoviedbapi.model.MovieDb;
 public class AppNavigator implements Navigator {
 
     private AppCompatActivity _activity;
+
     public AppNavigator(AppCompatActivity activity) {
         _activity = activity;
     }

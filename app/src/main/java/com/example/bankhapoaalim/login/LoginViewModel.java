@@ -3,14 +3,14 @@ package com.example.bankhapoaalim.login;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.bankhapoaalim.AppService;
+import com.example.bankhapoaalim.AppNetwork;
 import com.example.bankhapoaalim.widget.Result;
 
 public class LoginViewModel extends ViewModel {
 
-    private AppService _service;
+    private AppNetwork _service;
 
-    public LoginViewModel(AppService service) {
+    public LoginViewModel(AppNetwork service) {
         _service = service;
     }
 

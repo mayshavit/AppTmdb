@@ -10,10 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bankhapoaalim.MainActivity;
-import com.example.bankhapoaalim.MoviesAdapter;
+import com.example.bankhapoaalim.widget.MoviesAdapter;
 import com.example.bankhapoaalim.R;
-import com.example.bankhapoaalim.latestmovies.LatestMoviesViewModel;
 
 import info.movito.themoviedbapi.model.MovieDb;
 
@@ -42,7 +40,7 @@ public class FavoritesFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        _viewModel = (FavoritesViewModel) ((FavoritesActivity)getActivity()).getViewModel(FavoritesViewModel.class);
+        _viewModel = (FavoritesViewModel) ((FavoritesActivity) getActivity()).getViewModel(FavoritesViewModel.class);
         _viewModel.getFavorites().observe(getViewLifecycleOwner(), result -> {
             if (result.isSuccessful()) {
                 _moviesAdapter.setMovies(result.getValue());

@@ -1,12 +1,10 @@
 package com.example.bankhapoaalim.latestmovies;
 
-import android.app.Service;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.bankhapoaalim.AppService;
-import com.example.bankhapoaalim.Navigator;
+import com.example.bankhapoaalim.AppNetwork;
+import com.example.bankhapoaalim.widget.Navigator;
 
 import java.util.List;
 
@@ -14,17 +12,12 @@ import info.movito.themoviedbapi.model.MovieDb;
 
 public class LatestMoviesViewModel extends ViewModel {
 
-    private AppService _service;
-    private LiveData<List<MovieDb>> _moviesLiveData;
+    private AppNetwork _service;
     private Navigator _navigator;
 
-    public LatestMoviesViewModel(Navigator navigator, AppService service) {
+    public LatestMoviesViewModel(Navigator navigator, AppNetwork service) {
         _service = service;
         _navigator = navigator;
-
-//        List<MovieDb> movies = _service.getLatestMovies();
-//
-//        _moviesLiveData = ;
     }
 
     public LiveData<List<MovieDb>> getLatestMovies() {

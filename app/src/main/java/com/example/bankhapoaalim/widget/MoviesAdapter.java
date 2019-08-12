@@ -1,4 +1,4 @@
-package com.example.bankhapoaalim;
+package com.example.bankhapoaalim.widget;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,12 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.bankhapoaalim.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import info.movito.themoviedbapi.model.Artwork;
-import info.movito.themoviedbapi.model.ArtworkType;
 import info.movito.themoviedbapi.model.MovieDb;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder> {
@@ -44,42 +43,15 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
     public void onBindViewHolder(@NonNull MoviesViewHolder holder, int position) {
         MovieDb movieDb = _movies.get(position);
         holder._movieTitle.setText(movieDb.getTitle());
-//        List<String> urls = new ArrayList<>();
-//        if (movieDb.getImages() != null) {
-//            for (Artwork artworkImage : movieDb.getImages()) {
-//                if (artworkImage.getArtworkType() == ArtworkType.POSTER) {
-//                    urls.add(0, artworkImage.getFilePath());
-//                } else {
-//                    urls.add(artworkImage.getFilePath());
-//                }
-//
-//            }
-
-//        urls.add(BASE_URL + movieDb.getPosterPath());
-//        urls.add(BASE_URL + movieDb.getBackdropPath());
         Glide.with(_context).load(BASE_URL + movieDb.getPosterPath()).centerCrop().into(holder._movieBackgroundImage);
         holder.itemView.setOnClickListener(v -> {
             _listener.onMovieClicked(movieDb);
         });
-//        }
-
     }
 
     @Override
     public int getItemCount() {
         return _movies.size();
-    }
-
-    public static class MoviesViewHolder extends RecyclerView.ViewHolder {
-
-        public TextView _movieTitle;
-        public ImageView _movieBackgroundImage;
-
-        public MoviesViewHolder(@NonNull View itemView) {
-            super(itemView);
-            _movieTitle = itemView.findViewById(R.id.movie_title);
-            _movieBackgroundImage = itemView.findViewById(R.id.movie_background_image);
-        }
     }
 
     public void setMovies(List<MovieDb> movies) {
@@ -92,6 +64,18 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
 
     public interface OnMovieClickListener {
         void onMovieClicked(MovieDb movieDb);
+    }
+
+    public static class MoviesViewHolder extends RecyclerView.ViewHolder {
+
+        public TextView _movieTitle;
+        public ImageView _movieBackgroundImage;
+
+        public MoviesViewHolder(@NonNull View itemView) {
+            super(itemView);
+            _movieTitle = itemView.findViewById(R.id.movie_title);
+            _movieBackgroundImage = itemView.findViewById(R.id.movie_background_image);
+        }
     }
 
 }
