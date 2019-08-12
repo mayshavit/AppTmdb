@@ -6,7 +6,9 @@
     android:layout_centerInParent="true"
     android:gravity="center"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/colorPrimary"
+    android:background="@color/backgroundColor"
+    android:paddingRight="5dp"
+    android:paddingLeft="5dp"
     >
 
     <TextView
@@ -14,10 +16,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/welcome_title"
-        android:textSize="26sp"
-        android:textStyle="bold"
         android:layout_marginTop="17dp"
         android:layout_gravity="center"
+        style="@style/TitelsStyle"
         />
 
     <TextView
@@ -29,6 +30,7 @@
         android:textSize="15sp"
         android:textStyle="bold"
         android:layout_gravity="center"
+        style="@style/TextStyle"
         />
 
     <TextView
@@ -37,9 +39,10 @@
         android:layout_height="wrap_content"
         android:text="@string/welcome_latest_movies"
         android:layout_marginBottom="16dp"
-        android:background="@color/white"
         android:layout_marginTop="24dp"
         android:layout_gravity="center"
+        android:textStyle="bold"
+        style="@style/TextStyle"
         />
 
     <TextView
@@ -48,6 +51,18 @@
         android:layout_height="wrap_content"
         android:text="@string/login"
         android:layout_gravity="center"
+        android:textStyle="bold"
+        style="@style/TextStyle"
+        />
+    <TextView
+        android:id="@+id/welcome_login_additional_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome_login_additional_text"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+
         />
     <TextView
         android:id="@+id/welcome_favorites"
@@ -55,6 +70,7 @@
         android:layout_height="wrap_content"
         android:text="@string/welcome_favorites"
         android:visibility="gone"
+        style="@style/TextStyle"
         />
 
 </LinearLayout>

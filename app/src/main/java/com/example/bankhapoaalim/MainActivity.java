@@ -14,7 +14,7 @@ import com.example.bankhapoaalim.widget.ViewModelsFactory;
 
 public class MainActivity extends AppCompatActivity {
     private ViewModelsFactory _viewModelsFactory;
-    private TextView _loadingTextView;
+    private View _loadingTextView;
     private TextView _errorTextView;
 
     @Override

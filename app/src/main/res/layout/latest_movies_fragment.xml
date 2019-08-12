@@ -4,7 +4,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:background="@color/backgroundColor"
+    android:paddingRight="5dp"
+    android:paddingLeft="5dp"
+    >
 
     <TextView
         android:id="@+id/movies_title"
@@ -13,8 +16,8 @@
         android:text="@string/movies_title"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textStyle="bold"
-        android:textSize="26sp"
+        style="@style/TitelsStyle"
+        android:layout_marginBottom="10dp"
         />
 
     <androidx.recyclerview.widget.RecyclerView
