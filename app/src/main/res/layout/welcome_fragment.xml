@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_centerInParent="true"
+    android:gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/colorPrimary"
+    >
+
+    <TextView
+        android:id="@+id/welcome_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome_title"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:layout_marginTop="17dp"
+        android:layout_gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/welcome_action_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome_action_title"
+        android:layout_marginTop="50dp"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/welcome_latest_movies"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome_latest_movies"
+        android:layout_marginBottom="16dp"
+        android:background="@color/white"
+        android:layout_marginTop="24dp"
+        android:layout_gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/welcome_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        android:layout_gravity="center"
+        />
+    <TextView
+        android:id="@+id/welcome_favorites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome_favorites"
+        android:visibility="gone"
+        />
+
+</LinearLayout>

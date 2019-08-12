@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">BankHapoaalim</string>
+
+    <string name="welcome_title"> Welcome To App!</string>
+    <string name="welcome_action_title">what would you like to do?</string>
+    <string name="welcome_latest_movies">Latest Movies</string>
+    <string name="welcome_login">Login/Register</string>
+    <string name="welcome_favorites">Favorite Movies</string>
+
+    <string name="movies_title">Here are the latest movies:</string>
+
+    <string name="login_title">Please enter your Tmdb username and password:</string>
+    <string name="login_username">Username</string>
+    <string name="login_password">Password</string>
+    <string name="login">Login</string>
+
+    <string name="favorites_title">Here are your favorites:</string>
+
+</resources>
