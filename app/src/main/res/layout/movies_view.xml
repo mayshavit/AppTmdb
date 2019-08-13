@@ -3,21 +3,25 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="340dp"
+    android:background="@color/movieViewBackgroundColor"
+    android:layout_marginBottom="4dp"
     >
-
-    <ImageView
-        android:id="@+id/movie_background_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
 
     <TextView
         android:id="@+id/movie_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="This is movie title"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
         style="@style/TitelsStyle"
         />
+
+    <ImageView
+        android:id="@+id/movie_background_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/movie_title"
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

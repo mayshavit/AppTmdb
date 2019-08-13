@@ -1,4 +1,4 @@
-package com.example.bankhapoaalim.widget;
+package com.example.bankhapoaalim.utils;
 
 import android.content.Context;
 import android.view.LayoutInflater;

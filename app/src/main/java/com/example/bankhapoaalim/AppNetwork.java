@@ -2,7 +2,6 @@ package com.example.bankhapoaalim;
 
 import android.os.AsyncTask;
 
-import androidx.core.util.Pair;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -11,14 +10,10 @@ import com.example.bankhapoaalim.widget.Result;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import info.movito.themoviedbapi.TmdbAccount;
 import info.movito.themoviedbapi.TmdbApi;
-import info.movito.themoviedbapi.TmdbAuthentication;
-import info.movito.themoviedbapi.TmdbDiscover;
 import info.movito.themoviedbapi.model.Discover;
 import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.config.Account;
@@ -29,13 +24,7 @@ import info.movito.themoviedbapi.model.core.SessionToken;
 
 public class AppNetwork {
     private static final String API_KEY = "a6b73c703048141f02f8fb72c9bf289b";
-    private static final String TASK_CONNECT = "task_connect";
-    private static final String TASK_LOGIN = "task_login";
-    private static final String TASK_LATEST_MOVIES = "task_latest_movies";
-    private static final String TASK_ACCOUNT = "task_account";
-    private static final String TASK_FAVORITES = "task_favorites";
-    private static final String PARAM_USER = "username";
-    private static final String PARAM_PASSWORD = "password";
+
     private static AppNetwork _this;
     private TmdbApi _api;
     private TmdbAccount _account;
@@ -60,38 +49,60 @@ public class AppNetwork {
 
 
     private void init() {
-
-        ApplicationAsyncTask<TmdbApi, String> task = new ApplicationAsyncTask<>(object -> {
-            if (object != null) {
-                _api = object;
-                _account = _api.getAccount();
-                _connectLiveData.postValue(Result.successful());
-            } else {
-                _connectLiveData.postValue(Result.failure());
+        NetworkTaskListener<Result<TmdbApi>> listener = new NetworkTaskListener<Result<TmdbApi>>() {
+            @Override
+            public void onFinishRequest(Result<TmdbApi> result) {
+                if (result.isSuccessful()) {
+                    _api = result.getValue();
+                    _account = _api.getAccount();
+                    _connectLiveData.postValue(result);
+                }
             }
-        }, API_KEY);
-        task.execute(TASK_CONNECT);
+        };
+
+        NetworkTaskFunction<TmdbApi> function = new NetworkTaskFunction<TmdbApi>() {
+            @Override
+            public Result<TmdbApi> executeFunction() {
+                TmdbApi api;
+                try {
+                    api = new TmdbApi(API_KEY);
+                    return Result.successful().setValue(api);
+                } catch (Exception e) {
+                    return Result.failure();
+                }
+            }
+        };
+
+        NetworkAsyncTask<TmdbApi> task = new NetworkAsyncTask<TmdbApi>(listener, function);
+        task.execute();
     }
 
     public void loginUser(String username, String password) {
-        Map<String, String> param = new HashMap<>();
-        param.put(PARAM_USER, username);
-        param.put(PARAM_PASSWORD, password);
-
-        ApplicationAsyncTask<TokenSession, Pair<TmdbAuthentication, Map<String, String>>> task = new ApplicationAsyncTask<>(new AsyncTaskListener<TokenSession>() {
+        NetworkTaskListener<Result<TokenSession>> listener = new NetworkTaskListener<Result<TokenSession>>() {
             @Override
-            public void onFinishRequest(TokenSession tokenSession) {
-                if (tokenSession != null) {
-                    _tokenSession = tokenSession;
-                    _loginLiveData.postValue(Result.successful());
-                } else {
-                    _loginLiveData.postValue(Result.failure());
+            public void onFinishRequest(Result<TokenSession> result) {
+                if (result.isSuccessful()) {
+                    _tokenSession = result.getValue();
                 }
-
+                _loginLiveData.postValue(result);
             }
-        }, new Pair<>(_api.getAuthentication(), param));
-        task.execute(TASK_LOGIN);
+        };
 
+        NetworkTaskFunction<TokenSession> function = new NetworkTaskFunction<TokenSession>() {
+            @Override
+            public Result<TokenSession> executeFunction() {
+                TokenSession tokenSession;
+                try {
+                    tokenSession = _api.getAuthentication().getSessionLogin(username,password);
+                    return Result.successful().setValue(tokenSession);
+                } catch (Exception e) {
+                    return Result.failure();
+                }
+            }
+        };
+
+        NetworkAsyncTask<TokenSession> task = new NetworkAsyncTask<>(listener, function);
+        task.execute();
     }
 
     public MutableLiveData<Result> getConnectLiveData() {
@@ -102,17 +113,47 @@ public class AppNetwork {
         return _loginLiveData;
     }
 
-    public LiveData<List<MovieDb>> getLatestMovies() {
-        MutableLiveData<List<MovieDb>> moviesMutableLiveData = new MutableLiveData<>();
-        ApplicationAsyncTask<MovieResultsPage, TmdbDiscover> task = new ApplicationAsyncTask<>(new AsyncTaskListener<MovieResultsPage>() {
+    public LiveData<Result<List<MovieDb>>> getLatestMovies() {
+        MutableLiveData<Result<List<MovieDb>>> moviesMutableLiveData = new MutableLiveData<>();
+        NetworkTaskListener<Result<MovieResultsPage>> listener = new NetworkTaskListener<Result<MovieResultsPage>>() {
             @Override
-            public void onFinishRequest(MovieResultsPage resultsPage) {
-                if (resultsPage != null) {
-                    moviesMutableLiveData.postValue(resultsPage.getResults());
+            public void onFinishRequest(Result<MovieResultsPage> result) {
+                if (result.isSuccessful() && result.getValue() != null && result.getValue().getResults() != null) {
+                    moviesMutableLiveData.postValue(Result.successful().setValue(result.getValue().getResults()));
+                } else {
+                    moviesMutableLiveData.postValue(Result.failure());
                 }
             }
-        }, _api.getDiscover());
-        task.execute(TASK_LATEST_MOVIES);
+        };
+
+        NetworkTaskFunction<MovieResultsPage> function = new NetworkTaskFunction<MovieResultsPage>() {
+            @Override
+            public Result<MovieResultsPage> executeFunction() {
+                Calendar calendar = Calendar.getInstance();
+                Date date = calendar.getTime();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+                Discover discover = new Discover();
+                discover.releaseDateLte(dateFormat.format(date));
+
+                calendar.add(Calendar.MONTH, -1);
+                date = calendar.getTime();
+
+                discover.releaseDateGte(dateFormat.format(date));
+
+                MovieResultsPage movieResultsPage;
+                try {
+                    movieResultsPage = _api.getDiscover().getDiscover(discover);
+                    return Result.successful().setValue(movieResultsPage);
+                } catch (Exception e) {
+                    return Result.failure();
+                }
+            }
+        };
+
+        NetworkAsyncTask<MovieResultsPage> task = new NetworkAsyncTask<>(listener, function);
+        task.execute();
+
         return moviesMutableLiveData;
     }
 
@@ -121,7 +162,7 @@ public class AppNetwork {
 
         if (_sessionToken == null) {
             _sessionToken = new SessionToken(_tokenSession.getSessionId());
-            getAccount(new AppServiceCallback() {
+            getAccount(new NetworkCallback() {
                 @Override
                 public void onSuccess() {
                     getFavoriteMoviesFromServer(favoriteLiveData);
@@ -139,141 +180,102 @@ public class AppNetwork {
     }
 
     private void getFavoriteMoviesFromServer(MutableLiveData<Result<List<MovieDb>>> favoriteLiveData) {
-        Map<String, Object> param = new HashMap<>();
-        param.put(SessionToken.class.getName(), _sessionToken);
-        param.put(AccountID.class.getName(), _accountID);
-        param.put(TmdbAccount.class.getName(), _account);
-        ApplicationAsyncTask<MovieResultsPage, Map<String, Object>> task = new ApplicationAsyncTask<>(new AsyncTaskListener<MovieResultsPage>() {
+
+        NetworkTaskListener<Result<MovieResultsPage>> listener = new NetworkTaskListener<Result<MovieResultsPage>>() {
             @Override
-            public void onFinishRequest(MovieResultsPage movieResultsPage) {
-                if (movieResultsPage != null) {
-                    favoriteLiveData.postValue(Result.successful().setValue(movieResultsPage.getResults()));
+            public void onFinishRequest(Result<MovieResultsPage> result) {
+                if (result.isSuccessful() && result.getValue() != null && !result.getValue().getResults().isEmpty()) {
+                    favoriteLiveData.postValue(Result.successful().setValue(result.getValue().getResults()));
                 } else {
                     favoriteLiveData.postValue(Result.failure());
                 }
             }
-        }, param);
-        task.execute(TASK_FAVORITES);
+        };
+
+        NetworkTaskFunction<MovieResultsPage> function = new NetworkTaskFunction<MovieResultsPage>() {
+            @Override
+            public Result<MovieResultsPage> executeFunction() {
+
+                try {
+                    MovieResultsPage movieResultsPage = _account.getFavoriteMovies(_sessionToken, _accountID);
+                    return Result.successful().setValue(movieResultsPage);
+                } catch (Exception e) {
+                    return Result.failure();
+                }
+            }
+        };
+
+        NetworkAsyncTask<MovieResultsPage> task = new NetworkAsyncTask<>(listener, function);
+        task.execute();
     }
 
-    private void getAccount(AppServiceCallback callback) {
-        ApplicationAsyncTask<Account, Pair<TmdbAccount, SessionToken>> task = new ApplicationAsyncTask<>(new AsyncTaskListener<Account>() {
+    private void getAccount(NetworkCallback callback) {
+        NetworkTaskListener<Result<Account>> listener = new NetworkTaskListener<Result<Account>>() {
+
             @Override
-            public void onFinishRequest(Account account) {
-                if (account != null) {
-                    _accountID = new AccountID(account.getId());
+            public void onFinishRequest(Result<Account> result) {
+                if (result.isSuccessful() && result.getValue() != null) {
+                    _accountID = new AccountID(result.getValue().getId());
                     callback.onSuccess();
                 } else {
                     callback.onFailure();
                 }
             }
-        }, new Pair<>(_account, _sessionToken));
-        task.execute(TASK_ACCOUNT);
+        };
 
+        NetworkTaskFunction<Account> function = new NetworkTaskFunction<Account>() {
+            @Override
+            public Result<Account> executeFunction() {
+                Account account;
+                try {
+                    account = _account.getAccount(_sessionToken);
+                    return Result.successful().setValue(account);
+                } catch (Exception e) {
+                    return Result.failure();
+                }
+
+
+            }
+        };
+
+        NetworkAsyncTask<Account> task = new NetworkAsyncTask<>(listener, function);
+        task.execute();
     }
 
-    private interface AsyncTaskListener<T> {
+    private interface NetworkTaskListener<T> {
         void onFinishRequest(T object);
     }
 
-    private interface AppServiceCallback {
+    private interface NetworkTaskFunction<T> {
+        Result<T> executeFunction();
+    }
+
+    private interface NetworkCallback {
         void onSuccess();
 
         void onFailure();
     }
 
-    private static class ApplicationAsyncTask<T, H> extends AsyncTask<String, Void, T> {
+    private static class NetworkAsyncTask<T> extends AsyncTask<Void, Void, Result<T>> {
+        private NetworkTaskListener<Result<T>> _listener;
+        private NetworkTaskFunction<T> _function;
 
-        private AsyncTaskListener<T> _listener;
-        private H _param;
-
-        ApplicationAsyncTask(AsyncTaskListener<T> listener, H param) {
+        NetworkAsyncTask(NetworkTaskListener<Result<T>> listener, NetworkTaskFunction<T> function) {
             _listener = listener;
-            _param = param;
+            _function = function;
         }
 
         @Override
-        protected T doInBackground(String... strings) {
-            String task = strings[0];
-            T data = null;
-            switch (task) {
-                case TASK_CONNECT:
-                    data = (T) loginToTmdb((String) _param);
-                    break;
-                case TASK_LATEST_MOVIES:
-                    data = (T) getLatestMovieResults((TmdbDiscover) _param);
-                    break;
-                case TASK_LOGIN:
-                    data = (T) loginUserWithNameAndPassword((Pair<TmdbAuthentication, Map<String, String>>) _param);
-                    break;
-                case TASK_ACCOUNT:
-                    data = (T) getAccount((Pair<TmdbAccount, SessionToken>) _param);
-                    break;
-                case TASK_FAVORITES:
-                    data = (T) getFavorites((Map<String, Object>) _param);
-                    break;
-            }
-            return data;
-        }
-
-        private TmdbApi loginToTmdb(String apiKey) {
-            TmdbApi api;
-            try {
-                api = new TmdbApi(apiKey);
-            } catch (Exception e) {
-                return null;
-            }
-
-            return api;
-        }
-
-        private MovieResultsPage getLatestMovieResults(TmdbDiscover tmdbDiscover) {
-            Calendar calendar = Calendar.getInstance();
-            Date date = calendar.getTime();
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-            Discover discover = new Discover();
-            discover.releaseDateLte(dateFormat.format(date));
-
-            calendar.add(Calendar.MONTH, -1);
-            date = calendar.getTime();
-
-            discover.releaseDateGte(dateFormat.format(date));
-            return tmdbDiscover.getDiscover(discover);
-
-        }
-
-        private TokenSession loginUserWithNameAndPassword(Pair<TmdbAuthentication, Map<String, String>> param) {
-            TmdbAuthentication tmdbAuthentication = param.first;
-            Map<String, String> userParam = param.second;
-
-            TokenSession tokenSession;
-            try {
-                tokenSession = tmdbAuthentication.getSessionLogin(userParam.get(PARAM_USER), userParam.get(PARAM_PASSWORD));
-            } catch (Exception e) {
-                return null;
-            }
-            return tokenSession;
-        }
-
-        private Account getAccount(Pair<TmdbAccount, SessionToken> param) {
-            TmdbAccount tmdbAccount = param.first;
-            SessionToken sessionToken = param.second;
-            return tmdbAccount.getAccount(sessionToken);
-        }
-
-        private MovieResultsPage getFavorites(Map<String, Object> param) {
-            SessionToken sessionToken = (SessionToken) param.get(SessionToken.class.getName());
-            AccountID accountID = (AccountID) param.get(AccountID.class.getName());
-            TmdbAccount tmdbAccount = (TmdbAccount) param.get(TmdbAccount.class.getName());
-
-            return tmdbAccount.getFavoriteMovies(sessionToken, accountID);
+        protected Result<T> doInBackground(Void ... voids) {
+            return _function.executeFunction();
         }
 
         @Override
-        protected void onPostExecute(T value) {
-            super.onPostExecute(value);
-            _listener.onFinishRequest(value);
+        protected void onPostExecute(Result<T> t) {
+            super.onPostExecute(t);
+            _listener.onFinishRequest(t);
         }
+
     }
+
 }

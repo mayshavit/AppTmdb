@@ -1,4 +1,4 @@
-package com.example.bankhapoaalim.widget;
+package com.example.bankhapoaalim;
 
 import info.movito.themoviedbapi.model.MovieDb;
 

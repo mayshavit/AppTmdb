@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.bankhapoaalim.AppNetwork;
-import com.example.bankhapoaalim.widget.Navigator;
+import com.example.bankhapoaalim.Navigator;
 import com.example.bankhapoaalim.widget.Result;
 
 public class WelcomeFragmentViewModel extends ViewModel {

@@ -8,9 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModel;
 
-import com.example.bankhapoaalim.widget.AppNavigator;
-import com.example.bankhapoaalim.widget.Navigator;
-import com.example.bankhapoaalim.widget.ViewModelsFactory;
+import com.example.bankhapoaalim.utils.ViewModelsFactory;
 
 public class MainActivity extends AppCompatActivity {
     private ViewModelsFactory _viewModelsFactory;

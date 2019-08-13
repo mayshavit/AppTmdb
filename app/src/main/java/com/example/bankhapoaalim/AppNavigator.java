@@ -1,4 +1,4 @@
-package com.example.bankhapoaalim.widget;
+package com.example.bankhapoaalim;
 
 import android.content.Intent;
 
@@ -7,8 +7,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.bankhapoaalim.MainActivity;
-import com.example.bankhapoaalim.R;
 import com.example.bankhapoaalim.favorites.FavoritesActivity;
 import com.example.bankhapoaalim.favorites.FavoritesFragment;
 import com.example.bankhapoaalim.latestmovies.LatestMoviesFragment;
@@ -62,6 +60,7 @@ public class AppNavigator implements Navigator {
     private void openFragment(Fragment fragment) {
         FragmentManager fragmentManager = _activity.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.show(fragment);
         fragmentTransaction.replace(R.id.fragments_container, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();

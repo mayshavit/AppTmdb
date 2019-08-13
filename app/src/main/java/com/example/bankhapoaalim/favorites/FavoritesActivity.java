@@ -9,10 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModel;
 
 import com.example.bankhapoaalim.AppNetwork;
-import com.example.bankhapoaalim.widget.AppNavigator;
-import com.example.bankhapoaalim.widget.Navigator;
+import com.example.bankhapoaalim.AppNavigator;
+import com.example.bankhapoaalim.Navigator;
 import com.example.bankhapoaalim.R;
-import com.example.bankhapoaalim.widget.ViewModelsFactory;
+import com.example.bankhapoaalim.utils.ViewModelsFactory;
 
 public class FavoritesActivity extends AppCompatActivity {
 

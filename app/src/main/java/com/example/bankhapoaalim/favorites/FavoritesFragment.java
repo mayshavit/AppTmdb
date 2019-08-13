@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bankhapoaalim.widget.MoviesAdapter;
+import com.example.bankhapoaalim.utils.MoviesAdapter;
 import com.example.bankhapoaalim.R;
 
 import info.movito.themoviedbapi.model.MovieDb;

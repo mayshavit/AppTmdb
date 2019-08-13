@@ -1,8 +1,9 @@
-package com.example.bankhapoaalim.widget;
+package com.example.bankhapoaalim.utils;
 
 import androidx.lifecycle.ViewModel;
 
 import com.example.bankhapoaalim.AppNetwork;
+import com.example.bankhapoaalim.Navigator;
 import com.example.bankhapoaalim.favorites.FavoritesViewModel;
 import com.example.bankhapoaalim.latestmovies.LatestMoviesViewModel;
 import com.example.bankhapoaalim.login.LoginViewModel;
