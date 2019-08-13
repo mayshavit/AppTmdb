@@ -93,7 +93,7 @@ public class AppNetwork {
             public Result<TokenSession> executeFunction() {
                 TokenSession tokenSession;
                 try {
-                    tokenSession = _api.getAuthentication().getSessionLogin(username,password);
+                    tokenSession = _api.getAuthentication().getSessionLogin(username, password);
                     return Result.successful().setValue(tokenSession);
                 } catch (Exception e) {
                     return Result.failure();
@@ -266,7 +266,7 @@ public class AppNetwork {
         }
 
         @Override
-        protected Result<T> doInBackground(Void ... voids) {
+        protected Result<T> doInBackground(Void... voids) {
             return _function.executeFunction();
         }
 

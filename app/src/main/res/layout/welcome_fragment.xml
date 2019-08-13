@@ -18,6 +18,8 @@
         android:text="@string/welcome_title"
         android:layout_marginTop="17dp"
         android:layout_gravity="center"
+        android:textSize="40dp"
+        android:textAlignment="center"
         style="@style/TitelsStyle"
         />
 
@@ -26,8 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/welcome_action_title"
-        android:layout_marginTop="50dp"
-        android:textSize="15sp"
+        android:layout_marginTop="15dp"
         android:textStyle="bold"
         android:layout_gravity="center"
         style="@style/TextStyle"
@@ -40,8 +41,9 @@
         android:text="@string/welcome_latest_movies"
         android:layout_marginBottom="16dp"
         android:layout_marginTop="24dp"
-        android:layout_gravity="center"
+        android:padding="8dp"
         android:textStyle="bold"
+        android:background="@color/movieViewBackgroundColor"
         style="@style/TextStyle"
         />
 
@@ -52,6 +54,8 @@
         android:text="@string/login"
         android:layout_gravity="center"
         android:textStyle="bold"
+        android:padding="8dp"
+        android:background="@color/movieViewBackgroundColor"
         style="@style/TextStyle"
         />
     <TextView
@@ -62,13 +66,17 @@
         android:layout_gravity="center"
         android:textAlignment="center"
         android:textColor="@color/white"
-
+        android:layout_marginTop="4dp"
         />
     <TextView
         android:id="@+id/welcome_favorites"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/welcome_favorites"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:padding="8dp"
+        android:background="@color/movieViewBackgroundColor"
         android:visibility="gone"
         style="@style/TextStyle"
         />

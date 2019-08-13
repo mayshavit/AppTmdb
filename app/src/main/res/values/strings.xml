@@ -4,7 +4,7 @@
     <string name="welcome_title"> Welcome To App!</string>
     <string name="welcome_action_title">what would you like to do?</string>
     <string name="welcome_latest_movies">Latest Movies</string>
-    <string name="welcome_login_additional_text">Login to your account in order to watch your favorite movies list!</string>
+    <string name="welcome_login_additional_text">(login to your account in order to watch your\n favorite movies list!)</string>
     <string name="welcome_favorites">Favorite Movies</string>
 
     <string name="movies_title">Here are the latest movies:</string>

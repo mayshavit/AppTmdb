@@ -60,7 +60,7 @@ public class AppNavigator implements Navigator {
     private void openFragment(Fragment fragment) {
         FragmentManager fragmentManager = _activity.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.show(fragment);
+        fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         fragmentTransaction.replace(R.id.fragments_container, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();

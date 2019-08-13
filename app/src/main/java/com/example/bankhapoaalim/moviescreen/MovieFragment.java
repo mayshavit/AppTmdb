@@ -53,7 +53,7 @@ public class MovieFragment extends Fragment {
             _title.setText(_movieDb.getTitle());
             _description.setText(_movieDb.getOverview());
             _yearOfProduction.setText(_movieDb.getReleaseDate());
-            _rate.setText(String.valueOf(_movieDb.getUserRating()));
+            _rate.setText(String.valueOf(_movieDb.getVoteAverage()));
             Glide.with(this).load(BASE_URL + _movieDb.getPosterPath()).into(_imageView);
         }
     }

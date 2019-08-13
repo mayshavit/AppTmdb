@@ -1,59 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
     android:paddingRight="5dp"
     android:paddingLeft="5dp"
+    android:weightSum="2"
     >
     <ImageView
         android:id="@+id/movie_image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-    <LinearLayout
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="6dp"
+        />
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         >
 
-        <TextView
-            android:id="@+id/movie_title"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="jdajfhjdf"
-            android:gravity="center_horizontal"
-            style="@style/TitelsStyle"
-            />
+            android:layout_height="0dp"
+            android:orientation="vertical"
 
-        <TextView
-            android:id="@+id/movie_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="jdajfhjdf"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="6dp"
-            style="@style/TextStyle"
-            />
+            >
 
-        <TextView
-            android:id="@+id/movie_year_production"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="6dp"
-            android:text="jhfjdhfjdhj"
-            style="@style/TextStyle"
-            />
+            <TextView
+                android:id="@+id/movie_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="jdajfhjdf"
+                android:gravity="center_horizontal"
+                android:textAlignment="center"
+                style="@style/TitelsStyle"
+                />
 
-        <TextView
-            android:id="@+id/movie_rate"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="6dp"
-            android:text="jhfjdhfjdhj"
-            style="@style/TextStyle"
-            />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/movie_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="jdajfhjdf"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginTop="16dp"
+                style="@style/TextStyle"
+                />
 
-</RelativeLayout>
+            <TextView
+                android:id="@+id/movie_year_production"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:lineSpacingExtra="4dp"
+                android:text="jhfjdhfjdhj"
+                android:textAlignment="center"
+                style="@style/TextStyle"
+                />
+
+            <TextView
+                android:id="@+id/movie_rate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:lineSpacingExtra="4dp"
+                android:text="jhfjdhfjdhj"
+                style="@style/TextStyle"
+                />
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

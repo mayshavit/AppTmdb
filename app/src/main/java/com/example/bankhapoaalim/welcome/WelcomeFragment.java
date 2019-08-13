@@ -16,8 +16,9 @@ import com.example.bankhapoaalim.R;
 public class WelcomeFragment extends Fragment {
     private TextView _latestMoviesBtn;
     private TextView _loginBtn;
-    private WelcomeFragmentViewModel _viewModel;
+    private TextView _loginAdditionalText;
     private TextView _favoritesBtn;
+    private WelcomeFragmentViewModel _viewModel;
 
     @Nullable
     @Override
@@ -26,6 +27,7 @@ public class WelcomeFragment extends Fragment {
 
         _latestMoviesBtn = view.findViewById(R.id.welcome_latest_movies);
         _loginBtn = view.findViewById(R.id.welcome_login);
+        _loginAdditionalText = view.findViewById(R.id.welcome_login_additional_text);
         _favoritesBtn = view.findViewById(R.id.welcome_favorites);
 
         return view;
@@ -43,9 +45,11 @@ public class WelcomeFragment extends Fragment {
             if (result.isSuccessful()) {
                 _favoritesBtn.setVisibility(View.VISIBLE);
                 _loginBtn.setVisibility(View.GONE);
+                _loginAdditionalText.setVisibility(View.GONE);
             } else {
                 _favoritesBtn.setVisibility(View.GONE);
                 _loginBtn.setVisibility(View.VISIBLE);
+                _loginAdditionalText.setVisibility(View.VISIBLE);
             }
         });
     }
