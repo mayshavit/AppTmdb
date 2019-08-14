@@ -1,11 +1,11 @@
-package com.example.bankhapoaalim.favorites;
+package com.example.bankhapoalim.favorites;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.bankhapoaalim.AppNetwork;
-import com.example.bankhapoaalim.Navigator;
-import com.example.bankhapoaalim.widget.Result;
+import com.example.bankhapoalim.AppNetwork;
+import com.example.bankhapoalim.Navigator;
+import com.example.bankhapoalim.widget.Result;
 
 import java.util.List;
 

@@ -1,11 +1,11 @@
-package com.example.bankhapoaalim.welcome;
+package com.example.bankhapoalim.welcome;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.bankhapoaalim.AppNetwork;
-import com.example.bankhapoaalim.Navigator;
-import com.example.bankhapoaalim.widget.Result;
+import com.example.bankhapoalim.AppNetwork;
+import com.example.bankhapoalim.Navigator;
+import com.example.bankhapoalim.widget.Result;
 
 public class WelcomeFragmentViewModel extends ViewModel {
     private Navigator _navigator;

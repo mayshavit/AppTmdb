@@ -1,36 +1,37 @@
-package com.example.bankhapoaalim;
+package com.example.bankhapoalim;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.FrameLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModel;
 
-import com.example.bankhapoaalim.utils.ViewModelsFactory;
+import com.example.bankhapoalim.utils.ViewModelsFactory;
 
 public class MainActivity extends AppCompatActivity {
     private ViewModelsFactory _viewModelsFactory;
-    private View _loadingTextView;
-    private TextView _errorTextView;
+    private FrameLayout _loadingFrameLayout;
+    private View _errorFrameLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        _loadingTextView = findViewById(R.id.loading_view);
-        _errorTextView = findViewById(R.id.error_view);
+        _loadingFrameLayout = findViewById(R.id.on_action_loader);
+        _errorFrameLayout = findViewById(R.id.on_action_error);
 
         AppNetwork service = AppNetwork.getInstance();
         Navigator navigator = new AppNavigator(this);
         service.getConnectLiveData().observe(this, result -> {
-            _loadingTextView.setVisibility(View.GONE);
+            _loadingFrameLayout.setVisibility(View.GONE);
             if (result.isSuccessful()) {
+                _errorFrameLayout.setVisibility(View.GONE);
                 _viewModelsFactory = new ViewModelsFactory(navigator, service);
                 navigator.goWelcome();
             } else {
-                _errorTextView.setVisibility(View.VISIBLE);
+                _errorFrameLayout.setVisibility(View.VISIBLE);
             }
         });
     }

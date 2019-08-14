@@ -1,4 +1,4 @@
-package com.example.bankhapoaalim.widget;
+package com.example.bankhapoalim.widget;
 
 public class Result<T> {
     private boolean _isSuccessful;

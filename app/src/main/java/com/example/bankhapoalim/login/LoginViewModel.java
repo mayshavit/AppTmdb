@@ -1,10 +1,10 @@
-package com.example.bankhapoaalim.login;
+package com.example.bankhapoalim.login;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.bankhapoaalim.AppNetwork;
-import com.example.bankhapoaalim.widget.Result;
+import com.example.bankhapoalim.AppNetwork;
+import com.example.bankhapoalim.widget.Result;
 
 public class LoginViewModel extends ViewModel {
 

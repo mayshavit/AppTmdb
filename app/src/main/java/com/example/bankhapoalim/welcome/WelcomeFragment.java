@@ -1,4 +1,4 @@
-package com.example.bankhapoaalim.welcome;
+package com.example.bankhapoalim.welcome;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.bankhapoaalim.MainActivity;
-import com.example.bankhapoaalim.R;
+import com.example.bankhapoalim.MainActivity;
+import com.example.bankhapoalim.R;
 
 public class WelcomeFragment extends Fragment {
     private TextView _latestMoviesBtn;

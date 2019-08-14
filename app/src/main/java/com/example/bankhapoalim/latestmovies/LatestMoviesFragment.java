@@ -1,4 +1,4 @@
-package com.example.bankhapoaalim.latestmovies;
+package com.example.bankhapoalim.latestmovies;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,12 +10,15 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bankhapoaalim.MainActivity;
-import com.example.bankhapoaalim.utils.MoviesAdapter;
-import com.example.bankhapoaalim.R;
+import com.example.bankhapoalim.MainActivity;
+import com.example.bankhapoalim.utils.MoviesAdapter;
+import com.example.bankhapoalim.R;
 
 import info.movito.themoviedbapi.model.MovieDb;
 
+/**
+ * This fragment shows the latest movies
+ */
 public class LatestMoviesFragment extends Fragment {
 
     private RecyclerView _moviesRecyclerView;

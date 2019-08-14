@@ -1,21 +1,25 @@
-package com.example.bankhapoaalim;
+package com.example.bankhapoalim;
 
 import android.content.Intent;
+import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.bankhapoaalim.favorites.FavoritesActivity;
-import com.example.bankhapoaalim.favorites.FavoritesFragment;
-import com.example.bankhapoaalim.latestmovies.LatestMoviesFragment;
-import com.example.bankhapoaalim.login.LoginFragment;
-import com.example.bankhapoaalim.moviescreen.MovieFragment;
-import com.example.bankhapoaalim.welcome.WelcomeFragment;
+import com.example.bankhapoalim.favorites.FavoritesActivity;
+import com.example.bankhapoalim.favorites.FavoritesFragment;
+import com.example.bankhapoalim.latestmovies.LatestMoviesFragment;
+import com.example.bankhapoalim.login.LoginFragment;
+import com.example.bankhapoalim.moviescreen.MovieFragment;
+import com.example.bankhapoalim.welcome.WelcomeFragment;
 
 import info.movito.themoviedbapi.model.MovieDb;
 
+/**
+ * This class navigates between fragments/activities of the application
+ */
 public class AppNavigator implements Navigator {
 
     private AppCompatActivity _activity;
@@ -53,7 +57,14 @@ public class AppNavigator implements Navigator {
 
     @Override
     public void goMovie(MovieDb movieDb) {
-        MovieFragment movieFragment = MovieFragment.createMovieFragment(movieDb);
+        Bundle bundle = new Bundle();
+        bundle.putString(MovieFragment.MOVIE_TITLE, movieDb.getTitle());
+        bundle.putString(MovieFragment.MOVIE_DEACRIPTION, movieDb.getOverview());
+        bundle.putString(MovieFragment.MOVIE_YEAR_OF_PRODUCTION, movieDb.getReleaseDate());
+        bundle.putFloat(MovieFragment.MOVIE_RATE, movieDb.getVoteAverage());
+        bundle.putString(MovieFragment.MOVIE_IMAGE_POSTER_URL, movieDb.getPosterPath());
+        MovieFragment movieFragment = new MovieFragment();
+        movieFragment.setArguments(bundle);
         openFragment(movieFragment);
     }
 

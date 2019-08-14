@@ -1,4 +1,4 @@
-package com.example.bankhapoaalim;
+package com.example.bankhapoalim;
 
 import org.junit.Test;
 

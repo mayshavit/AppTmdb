@@ -31,7 +31,6 @@
                 android:id="@+id/movie_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="jdajfhjdf"
                 android:gravity="center_horizontal"
                 android:textAlignment="center"
                 style="@style/TitelsStyle"
@@ -41,7 +40,6 @@
                 android:id="@+id/movie_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="jdajfhjdf"
                 android:gravity="center_horizontal"
                 android:lineSpacingExtra="4dp"
                 android:layout_marginTop="16dp"
@@ -55,7 +53,6 @@
                 android:gravity="center_horizontal"
                 android:layout_marginTop="16dp"
                 android:lineSpacingExtra="4dp"
-                android:text="jhfjdhfjdhj"
                 android:textAlignment="center"
                 style="@style/TextStyle"
                 />
@@ -67,7 +64,6 @@
                 android:gravity="center_horizontal"
                 android:layout_marginTop="16dp"
                 android:lineSpacingExtra="4dp"
-                android:text="jhfjdhfjdhj"
                 style="@style/TextStyle"
                 />
         </LinearLayout>

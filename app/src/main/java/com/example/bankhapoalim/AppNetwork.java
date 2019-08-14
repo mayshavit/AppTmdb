@@ -1,11 +1,11 @@
-package com.example.bankhapoaalim;
+package com.example.bankhapoalim;
 
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.bankhapoaalim.widget.Result;
+import com.example.bankhapoalim.widget.Result;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -22,6 +22,12 @@ import info.movito.themoviedbapi.model.core.AccountID;
 import info.movito.themoviedbapi.model.core.MovieResultsPage;
 import info.movito.themoviedbapi.model.core.SessionToken;
 
+/**
+ * This is the main class tha manages network operation with the Tmdb server.
+ * It uses AsyncTask to execute this operations on background, and themoviedbapi api.
+ * After receiving data from the server - the class uses LiveData to update ViewModel-s that subscribed
+ * to it.
+ */
 public class AppNetwork {
     private static final String API_KEY = "a6b73c703048141f02f8fb72c9bf289b";
 
@@ -241,6 +247,7 @@ public class AppNetwork {
         NetworkAsyncTask<Account> task = new NetworkAsyncTask<>(listener, function);
         task.execute();
     }
+
 
     private interface NetworkTaskListener<T> {
         void onFinishRequest(T object);

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BankHapoaalim</string>
+    <string name="app_name">BankHapoalimApp</string>
 
     <string name="welcome_title"> Welcome To App!</string>
     <string name="welcome_action_title">what would you like to do?</string>
@@ -15,5 +15,7 @@
     <string name="login">Login</string>
 
     <string name="favorites_title">Here are your favorites:</string>
+
+    <string name="error_string">An error occurred.\nPlease open the app again</string>
 
 </resources>

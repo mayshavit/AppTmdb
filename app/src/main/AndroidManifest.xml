@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.bankhapoaalim">
+    package="com.example.bankhapoalim">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
@@ -10,12 +10,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.example.bankhapoalim.MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".favorites.FavoritesActivity">
+        <activity android:name="com.example.bankhapoalim.favorites.FavoritesActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            >
         </activity>
     </application>
 </manifest>

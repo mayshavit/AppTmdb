@@ -1,4 +1,4 @@
-package com.example.bankhapoaalim.login;
+package com.example.bankhapoalim.login;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -13,9 +13,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.bankhapoaalim.MainActivity;
-import com.example.bankhapoaalim.R;
+import com.example.bankhapoalim.MainActivity;
+import com.example.bankhapoalim.R;
 
+/**
+ * This fragment login the user.
+ */
 public class LoginFragment extends Fragment {
 
     private EditText _userEdit;
@@ -43,8 +46,6 @@ public class LoginFragment extends Fragment {
         _viewModel.getLoginResult().observe(getViewLifecycleOwner(), result -> {
             if (result.isSuccessful()) {
                 getActivity().onBackPressed();
-            } else {
-
             }
         });
 

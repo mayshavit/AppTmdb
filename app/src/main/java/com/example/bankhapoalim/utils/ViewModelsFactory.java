@@ -1,14 +1,17 @@
-package com.example.bankhapoaalim.utils;
+package com.example.bankhapoalim.utils;
 
 import androidx.lifecycle.ViewModel;
 
-import com.example.bankhapoaalim.AppNetwork;
-import com.example.bankhapoaalim.Navigator;
-import com.example.bankhapoaalim.favorites.FavoritesViewModel;
-import com.example.bankhapoaalim.latestmovies.LatestMoviesViewModel;
-import com.example.bankhapoaalim.login.LoginViewModel;
-import com.example.bankhapoaalim.welcome.WelcomeFragmentViewModel;
+import com.example.bankhapoalim.AppNetwork;
+import com.example.bankhapoalim.Navigator;
+import com.example.bankhapoalim.favorites.FavoritesViewModel;
+import com.example.bankhapoalim.latestmovies.LatestMoviesViewModel;
+import com.example.bankhapoalim.login.LoginViewModel;
+import com.example.bankhapoalim.welcome.WelcomeFragmentViewModel;
 
+/**
+ * This class creates the requested ViewModel according to the give class.
+ */
 public class ViewModelsFactory {
 
     private Navigator _navigator;

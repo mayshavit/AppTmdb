@@ -1,4 +1,4 @@
-package com.example.bankhapoaalim.moviescreen;
+package com.example.bankhapoalim.moviescreen;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,26 +12,25 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
-import com.example.bankhapoaalim.R;
+import com.example.bankhapoalim.R;
 
-import info.movito.themoviedbapi.model.MovieDb;
-
+/**
+ * This fragment shows a movie and its details.
+ */
 public class MovieFragment extends Fragment {
 
     private static final String BASE_URL = "https://image.tmdb.org/t/p/original";
-    private MovieDb _movieDb;
+    public static final String MOVIE_TITLE = "movie_title";
+    public static final String MOVIE_DEACRIPTION = "movie_description";
+    public static final String MOVIE_YEAR_OF_PRODUCTION = "movie_year_of_production";
+    public static final String MOVIE_RATE = "movie_rate";
+    public static final String MOVIE_IMAGE_POSTER_URL = "movie_image_poster_url";
+
     private TextView _title;
     private TextView _description;
     private TextView _yearOfProduction;
     private TextView _rate;
     private ImageView _imageView;
-
-    public static MovieFragment createMovieFragment(MovieDb movieDb) {
-        MovieFragment movieFragment = new MovieFragment();
-        movieFragment.setMovieDb(movieDb);
-
-        return movieFragment;
-    }
 
     @Nullable
     @Override
@@ -49,17 +48,13 @@ public class MovieFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if (_movieDb != null) {
-            _title.setText(_movieDb.getTitle());
-            _description.setText(_movieDb.getOverview());
-            _yearOfProduction.setText(_movieDb.getReleaseDate());
-            _rate.setText(String.valueOf(_movieDb.getVoteAverage()));
-            Glide.with(this).load(BASE_URL + _movieDb.getPosterPath()).into(_imageView);
+        if (getArguments() != null) {
+            _title.setText(getArguments().getString(MOVIE_TITLE));
+            _description.setText(getArguments().getString(MOVIE_DEACRIPTION));
+            _yearOfProduction.setText(getArguments().getString(MOVIE_YEAR_OF_PRODUCTION));
+            _rate.setText(String.valueOf(getArguments().getFloat(MOVIE_RATE)));
+            Glide.with(this).load(BASE_URL + getArguments().getString(MOVIE_IMAGE_POSTER_URL)).into(_imageView);
         }
-    }
-
-    public void setMovieDb(MovieDb movieDb) {
-        _movieDb = movieDb;
     }
 
 }
