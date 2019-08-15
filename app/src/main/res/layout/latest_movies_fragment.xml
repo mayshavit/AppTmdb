@@ -16,7 +16,7 @@
         android:text="@string/movies_title"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        style="@style/TitelsStyle"
+        style="@style/TitlesStyle"
         android:layout_marginBottom="10dp"
         />
 

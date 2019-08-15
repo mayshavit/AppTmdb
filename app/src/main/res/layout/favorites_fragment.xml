@@ -17,7 +17,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
-        style="@style/TitelsStyle"
+        style="@style/TitlesStyle"
         />
 
     <androidx.recyclerview.widget.RecyclerView

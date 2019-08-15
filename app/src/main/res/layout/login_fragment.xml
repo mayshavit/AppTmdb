@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:text="@string/login_title"
         android:textAlignment="center"
-        style="@style/TitelsStyle"
+        style="@style/TitlesStyle"
         />
 
         <EditText
@@ -30,6 +30,8 @@
             android:layout_marginRight="40dp"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="22dp"
+            android:textAlignment="gravity"
+            android:gravity="left"
             />
 
         <EditText
@@ -44,6 +46,8 @@
             android:layout_marginLeft="40dp"
             android:layout_marginTop="22dp"
             android:inputType="textPassword"
+            android:textAlignment="gravity"
+            android:gravity="left"
             />
 
     <Button

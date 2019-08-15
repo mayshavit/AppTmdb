@@ -20,7 +20,7 @@
         android:layout_gravity="center"
         android:textSize="40dp"
         android:textAlignment="center"
-        style="@style/TitelsStyle"
+        style="@style/TitlesStyle"
         />
 
     <TextView

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:textAlignment="center"
-        style="@style/TitelsStyle"
+        style="@style/TitlesStyle"
         />
 
     <ImageView

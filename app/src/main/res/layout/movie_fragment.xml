@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:textAlignment="center"
-                style="@style/TitelsStyle"
+                style="@style/TitlesStyle"
                 />
 
             <TextView
